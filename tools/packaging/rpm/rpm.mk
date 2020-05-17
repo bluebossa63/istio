@@ -12,11 +12,12 @@ rpm/istio:
 				-e USER_ID=$(shell id -u) \
 				-e GROUP_ID=$(shell id -g) \
 				istio-rpm-builder \
-				tools/packaging/rpm/build-istio-rpm.sh
+				${PWD}/tools/packaging/rpm/build-istio-rpm.sh
 
 rpm/proxy:
 	docker run --rm -it \
         -v ${GO_TOP}:${GO_TOP} \
+        -v /work/out/linux_amd64:/work/out/linux_amd64 \
 				-w /builder \
         -e USER=${USER} \
 				-e ISTIO_ENVOY_VERSION=${ISTIO_ENVOY_VERSION} \
