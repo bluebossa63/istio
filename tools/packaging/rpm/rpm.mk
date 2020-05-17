@@ -17,7 +17,7 @@ rpm/istio:
 rpm/proxy:
 	docker run --rm -it \
         -v ${GO_TOP}:${GO_TOP} \
-        -v /work/out/linux_amd64:/work/out/linux_amd64 \
+        -v ${PWD}/out/linux_amd64:/work/out/linux_amd64 \
 				-w /builder \
         -e USER=${USER} \
 				-e ISTIO_ENVOY_VERSION=${ISTIO_ENVOY_VERSION} \
