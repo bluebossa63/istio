@@ -30,6 +30,10 @@ BuildRequires:  cmake3
 Source0:        istio-proxy.tar.gz
 Source1:        sidecar.env
 Source2:        envoy_bootstrap_v2.json
+Source3:        istio.service
+Source4:        istio-start.sh
+Source5:        istio-clean-tables
+Source6:        istio-iptables
 
 %description
 The Istio Proxy is a microservice proxy that can be used on the client and server side, and forms a microservice mesh. The Proxy supports a large number of features.
@@ -62,6 +66,10 @@ install -d -m755 $RPM_BUILD_ROOT/%{envoy_libdir}
 install -m755 ${RPM_BUILD_DIR}/istio-proxy/bazel-bin/src/envoy/envoy ${RPM_BUILD_ROOT}%{_bindir}
 install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{envoy_libdir}/sidecar.env
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{envoy_libdir}/envoy_bootstrap_tmpl.json
+install -m755 %{SOURCE3} /etc/systemd/system/istio.service
+install -m755 %{SOURCE4} /usr/local/bin/istio-start.sh
+install -m755 %{SOURCE5} /usr/local/bin/istio-clean-tables
+install -m755 %{SOURCE5} /usr/local/bin/istio-iptables
 
 %files
 %attr(0755,root,root) %{_bindir}/envoy

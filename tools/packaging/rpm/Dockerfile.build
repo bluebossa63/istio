@@ -1,5 +1,14 @@
 FROM centos:7
 
+ENV http_proxy=http://138.188.141.145:8080/
+ENV https_proxy=http://138.188.141.145:8080/
+ENV ftp_proxy=http://138.188.141.145:8080/
+ENV no_proxy=127.0.0.1,localhost,.draco-910.sccloudres.net,.swisscom.com
+ENV HTTP_PROXY=http://138.188.141.145:8080/
+ENV HTTPS_PROXY=http://138.188.141.145:8080/
+ENV FTP_PROXY=http://138.188.141.145:8080/
+ENV NO_PROXY=127.0.0.1,localhost,.draco-910.sccloudres.net,.swisscom.com
+
 RUN yum install -y centos-release-scl epel-release && \
     yum update -y && \
     yum install -y fedpkg sudo devtoolset-7-gcc devtoolset-7-gcc-c++ \
